@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- TITLE -->
+    <title>WayApp Desktop</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    
+    <!-- JS -->
+    <script type="text/javascript" src="/eel.js"></script>
+    <script src="js/main.js"></script>
+    <script
+			  src="https://code.jquery.com/jquery-3.7.1.min.js"
+			  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			  crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="sidebar preLogIn">
+        <div class="sidebar_logoContainer">
+          <img class="centerize" src="img/wayapp/logo/smallSidebar/smallSidebarLogo.png" alt="______ codename WayApp">
+        </div>
+        <div class="sidebar_projectSearch_formContainer">
+          <form class="sidebar_projectSearch_form" action="#">
+            <input type="text" class="centerize textInput" placeholder="Search in projects..."/>
+          </form>
+        </div>
+      </div>
+      <div class="content">
+        <div class="navbar">
+          <div class="buttonContainer">
+            <div class="centerize button buttonRed">
+              <div onclick="joinWindow()" class="centerize">Join</div>
+            </div>
+          </div>
+          <div class="buttonContainer">
+            <div class="centerize button buttonBlue">
+              <div onclick="verifyPinWindow()" class="centerize">Login</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
