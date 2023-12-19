@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- TITLE -->
+    <title>WayApp Desktop</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+      * {
+        /* border: 1px solid red; */
+      }
+    </style>
+    <!-- JS -->
+    <script type="text/javascript" src="/eel.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script
+			  src="https://code.jquery.com/jquery-3.7.1.min.js"
+			  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			  crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div id="createProject_DIAL" class="screenCenterize">
+      <div class="newProject">
+        <div class="newProject_name">
+          <input id="newProject_name_input" type="text" class="textInput" placeholder="Enter your project name. Be creative!"/>
+        </div>
+        <br>
+        <div class="newProject_tag">
+          <input id="newProject_tag_input" type="text" class="textInput" placeholder="Enter tags separated by space. Don't worry, you can change it later!"/>
+        </div>
+        <br>
+        <div class="buttonContainer">
+          <div class="button buttonBlue">
+            <button
+              onclick="
+                parseCreateProjectData_JS(
+                  document.getElementById('newProject_name_input').value, 
+                  document.getElementById('newProject_tag_input').value.split(' ')
+                );
+                document.getElementById('createProject').style.display = 'none'
+              "
+              class="btn centerize">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="height: 100vh;" class="container-fluid">
+      <div style="height: 100%;" class="row">
+        <div class="col-2 sidebar">
+          <div class="sidebar_logoContainer">
+            <img src="/img/wayapp/logo/smallSidebar/smallSidebarLogo.png" alt="______ codename WayApp">
+          </div>
+          <div style="border-top: 1px solid #FFFFFF0A; border-bottom: 1px solid #FFFFFF0A; margin: 10px 0 10px 0;" class="d-flex justify-content-center input-group">
+            <form action="#">
+              <input type="text" class="projectSearcher textInput" placeholder="Search in projects..."/>
+            </form>
+          </div>
+          <p class="d-inline-flex gap-1">
+            <a style="text-decoration: none; color: #FFFFFFAA;" data-bs-toggle="collapse" href="#collapseTree" role="button" aria-expanded="false" aria-controls="collapseTree">
+              Link with href
+            </a>
+          </p>
+          <div class="collapse" id="collapseTree">
+            <div id="sidebar_projectTree"></div>
+          </div>
+
+          <!-- <div id="sidebar_projectTree"><ul class="tree"><li><span>WayApp</span><ul class="tree"><li>Zrobić to</li><li>Zrobić tamto</li><li>Zrobić jeszcze coś</li></ul></li><li><span>OI</span><ul class="tree"><li>Wygrać</li><li>Przegrać</li></ul></li><li><span>XPlane</span><ul class="tree"><li>Checklista</li></ul></li></ul></div> -->
+        </div>
+        <div class="col content">
+          <div class="navbar navbar-expand-lg d-flex justify-content-end">
+            <div class="d-flex flex-row">
+              <div class="buttonContainer">
+                <button onclick="document.getElementById('createProject_DIAL').style.display = 'block'" class="btn btn-dark button buttonGreen"><span style="color: #FFFFFFAA">Create project</span></button>
+              </div>
+              <div class="buttonContainer">
+                <button class="btn btn-dark button buttonBlue"><span style="color: #FFFFFFAA">Edit project</span></button>
+              </div>
+              <div class="buttonContainer">
+                <button class="btn btn-dark button buttonIndigo"><span style="color: #FFFFFFAA">Delete Project</span></button>
+              </div>
+              <div class="buttonContainer">
+                <button class="btn btn-dark button buttonViolet"><span style="color: #FFFFFFAA">Modules</span></button>
+              </div>
+            </div>
+          </div>
+          <div id="projectInfo">
+            <ul style="opacity: 0.5;" class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Information</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Notes</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Files</button>
+              </li>
+            </ul>
+            <div style="padding-top: 10px;" class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                <div id="tab">
+                  <h1 id="projectInfo_name">Project name</h1>
+                  <h5 style="opacity: 0.5;" id="projectInfo_tags">Project tags</h5>
+                  <!-- <div class="input-group">
+                    <input type="text" class="textInput-lessVisible" id="projectInfo_name" placeholder="Edit the name..."/>
+                    <input style="margin-left: 5px;" type="text" class="textInput-lessVisible" id="projectInfo_tags" placeholder="Edit tags..."/>
+                      <button class="btn btn-dark button buttonBlue"><span style="color: #FFFFFFAA">Submit</span></button>
+                  </div> -->
+                </div>
+              </div>
+              <div style="padding-top: 10px;" class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+
+              </div>
+              <div style="padding-top: 10px;" class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let jsonFile = "/projects.json";
+      var html = "";
+      function showProject(id) {
+        const projectInfo = document.getElementById("projectInfo");
+        projectInfo.style.display = "block";
+        
+        const nameField = document.getElementById("projectInfo_name");
+        const tagsField = document.getElementById("projectInfo_tags");
+
+        console.log(eel.returnSingleProject(id-1)[0]);
+        tagsField.innerHTML = eel.returnSingleProject(id-1)[3];
+      }
+
+      function createList(data, parent) {
+        const ul = document.createElement('ul');
+        ul.classList.add("tree");
+        parent.appendChild(ul);
+        counter = 1;
+        data.forEach(item => {
+          const li = document.createElement('li');
+          li.setAttribute("onclick", showProject(counter));
+          ul.appendChild(li);
+
+          const content = document.createElement('span');
+          content.textContent = item.name;
+          li.appendChild(content);
+
+          if (item.tasks.length > 0) {
+            const ol = document.createElement('ul');
+            ol.classList.add("tree");
+            li.appendChild(ol);
+
+            item.tasks.forEach(task => {
+              const taskLi = document.createElement('li');
+              taskLi.textContent = task;
+              ol.appendChild(taskLi);
+            });
+          }
+          if (item.children) {
+            createList(item.children, li);
+          }
+
+          counter = counter + 1;
+        });
+        counter = 0;
+      }
+      function toUlLi(data, parent) {
+        counter = 1;
+        data.forEach(item => {
+          const div = document.createElement("div");
+          div.classList.add("collapse")
+          
+          const span = document.createElement("span");
+          span.innerHTML = eel.getNameById(counter);
+          div.appendChild(span);
+          console.log(span.html);
+          parent.appendChild(div);
+          counter = counter + 1;
+        });
+        counter = 0;
+      }
+      $.getJSON(jsonFile, function (data) {
+        toUlLi(data, document.getElementById("sidebar_projectTree"));
+      });
+      $(document).ready(function () {
+        $('.tree span').click(function () {
+          $(this).siblings('ul.tree').toggle('fast');
+        });
+      });
+    </script>
+  </body>
+</html>
+

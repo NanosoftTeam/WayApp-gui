@@ -1,18 +1,4 @@
 var global_desktop = false;
-let jsonData = [ // Sample JSON Project Data to test
-    {  
-        "name": "project1",   
-        "tag": ["tag1", "tag2"]
-    },
-    {  
-        "name": "project2",   
-        "tag": ["tag3", "tag4"]
-    },
-    {  
-        "name": "project3",   
-        "tag": ["tag5", "tag6"]
-    }
-]
 
 //
 // Function, which makes us able to choose (using the variable above), which way the `popup_join.html`
@@ -23,8 +9,17 @@ function joinWindow() {
     if (global_desktop) {
         eel.joinWindow();
     } else {
-        document.location.href = "./popup_join.html";
+        document.location.href = "./views/popups/popup_join.html";
     }
+}
+
+//
+// Function, which makes us able to choose (using the variable above), which way the `verify_pin.html`
+// window has to be opened.
+//
+
+function goToHome() {
+    document.location.href = "./views/home.html";
 }
 
 //
@@ -36,7 +31,7 @@ function verifyPinWindow() {
     if (global_desktop) {
         eel.verifyPinWindow();
     } else {
-        document.location.href = "./verify_pin.html";
+        document.location.href = "./views/popups/verify_pin.html";
     }
 }
 

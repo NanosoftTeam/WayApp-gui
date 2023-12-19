@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tree Animation</title>
+  <style>
+    .tree {
+      list-style: none;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .tree:before {
+      content: "";
+      width: 2px;
+      top: 0;
+      bottom: 3px;
+      left: 0;
+      position: absolute;
+    }
+
+    .tree li {
+      position: relative;
+    }
+
+    .tree li:before {
+      content: "";
+      width: 20px;
+      height: 1px;
+      top: 12px;
+      left: -20px;
+      position: absolute;;
+    }
+
+    ul.tree {
+      list-style-type: none;
+      padding-left: 20px;
+    }
+
+    ul.tree li {
+      margin-bottom: 5px;
+    }
+
+    ul.tree li ul {
+      display: none;
+    }
+
+    ul.tree li span {
+      cursor: pointer;
+    }
+
+    .tree li:hover,
+    .tree li:focus {
+      cursor: pointer;
+    }
+
+    .tree .tree {
+      display: none;
+    }
+
+    .fa {
+      padding-right: 5px;
+      margin-top: 10px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.tree span').click(function() {
+        $(this).siblings('ul.tree').toggle('fast');
+      });
+    });
+  </script>
+</head>
+<body>
+
+<div id="sidebar_projectTree">
+  <ul class="tree">
+    <li><span>projekt2mg</span>
+      <ul class="tree">
+        <li>Task 1</li>
+        <li>Task 2</li>
+        <li>Task 3</li>
+      </ul>
+    </li>
+    <li><span>projekt2mg</span>
+      <ul class="tree">
+        <li>Task 4</li>
+        <li>Task 5</li>
+      </ul>
+    </li>
+    <li><span>projekt3mg</span>
+      <ul class="tree">
+        <li>Task 6</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+</body>
+</html>

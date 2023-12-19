@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- TITLE -->
+    <title>WayApp Desktop</title>
+
+    <!-- CSS -->
+    <!-- <link rel="stylesheet" type="text/css" href="/css/main.css"> -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    
+    <style>
+      * {
+        border: 1px solid
+      }
+    </style>
+
+    <!-- JS -->
+    <script type="text/javascript" src="/eel.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script
+			  src="https://code.jquery.com/jquery-3.7.1.min.js"
+			  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			  crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div id="createProject_DIAL" class="screenCenterize">
+      <div class="newProject">
+        <div class="newProject_name">
+          <input id="newProject_name_input" type="text" class="textInput" placeholder="Enter your project name. Be creative!"/>
+        </div>
+        <br>
+        <div class="newProject_tag">
+          <input id="newProject_tag_input" type="text" class="textInput" placeholder="Enter tags separated by space. Don't worry, you can change it later!"/>
+        </div>
+        <br>
+        <div class="buttonContainer">
+          <div class="button buttonBlue">
+            <div
+              onclick="
+                parseCreateProjectData_JS(
+                  document.getElementById('newProject_name_input').value, 
+                  document.getElementById('newProject_tag_input').value.split(' ')
+                );
+                document.getElementById('createProject').style.display = 'none'
+              "
+              class="centerize">Submit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="sidebar">
+        <div class="sidebar_logoContainer">
+          <img class="centerize" src="/img/wayapp/logo/smallSidebar/smallSidebarLogo.png" alt="______ codename WayApp">
+        </div>
+        <div class="sidebar_projectSearch_formContainer">
+          <form class="sidebar_projectSearch_form" action="#">
+            <input type="text" class="centerize textInput" placeholder="Search in projects..."/>
+          </form>
+        </div>
+        <div id="sidebar_projectTree"></div>
+        <!-- <div id="sidebar_projectTree"><ul class="tree"><li><span>WayApp</span><ul class="tree"><li>Zrobić to</li><li>Zrobić tamto</li><li>Zrobić jeszcze coś</li></ul></li><li><span>OI</span><ul class="tree"><li>Wygrać</li><li>Przegrać</li></ul></li><li><span>XPlane</span><ul class="tree"><li>Checklista</li></ul></li></ul></div> -->
+      </div>
+      <div class="content">
+        <div class="navbar">
+          <div class="buttonContainer">
+            <div class="centerize button buttonGreen">
+              <div onclick="document.getElementById('createProject_DIAL').style.display = 'block'" class="centerize">Create project</div>
+            </div>
+          </div>
+          <div class="buttonContainer">
+            <div class="centerize button buttonBlue">
+              <div class="centerize">Edit project</div>
+            </div>
+          </div>
+          <div class="buttonContainer">
+            <div class="centerize button buttonIndigo">
+              <div class="centerize">Delete Project</div>
+            </div>
+          </div>
+          <div class="buttonContainer">
+            <div class="centerize button buttonViolet">
+              <div class="centerize">Modules</div>
+            </div>
+          </div>
+        </div>
+        <div class="projectInfo">
+          <input type="text" class="textInput" id="projectInfo_name"/>
+            <div class="button buttonBlue">
+              <div class="centerize">Submit</div>
+            </div>
+          <input type="text" class="textInput" id="projectInfo_tags"/>
+            <div class="button buttonBlue">
+              <div class="centerize">Submit</div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let jsonFile = "/projects.json";
+      var html = "";
+      function createList(data, parent) {
+        const ul = document.createElement('ul');
+        ul.classList.add("tree");
+        parent.appendChild(ul);
+
+        data.forEach(item => {
+          const li = document.createElement('li');
+          ul.appendChild(li);
+
+          const content = document.createElement('span');
+          content.textContent = item.name;
+          li.appendChild(content);
+
+          if (item.tasks.length > 0) {
+            const ol = document.createElement('ul');
+            ol.classList.add("tree");
+            li.appendChild(ol);
+
+            item.tasks.forEach(task => {
+              const taskLi = document.createElement('li');
+              taskLi.textContent = task;
+              ol.appendChild(taskLi);
+            });
+          }
+
+          if (item.children) {
+            createList(item.children, li);
+          }
+        });
+      }
+      $.getJSON(jsonFile, function (data) {
+        createList(data, document.getElementById("sidebar_projectTree"));
+      });
+      $(document).ready(function () {
+        $('.tree span').click(function () {
+          $(this).siblings('ul.tree').toggle('fast');
+        });
+        $("li").click(function () {
+          
+        });
+      });
+    </script>
+  </body>
+</html>
