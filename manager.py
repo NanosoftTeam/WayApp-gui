@@ -4,9 +4,9 @@ import json
 from datetime import datetime
 
 #configuration
-program_path = "/home/norwagov/Documents/WayApp-gui/"
+program_path = "C:\\Users\\chuj\\WayApp-gui"
 communication_mode = "json"
-path_slash = "" #path to manager.py file
+path_slash = "C:\\Users\\chuj\\WayApp-gui\\manager.py" #path to manager.py file
 
 #System commands
 class System:

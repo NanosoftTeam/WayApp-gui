@@ -67,7 +67,7 @@
             <div id="sidebar_projectTree"></div>
           </div>
 
-          <!-- <div id="sidebar_projectTree"><ul class="tree"><li><span>WayApp</span><ul class="tree"><li>Zrobić to</li><li>Zrobić tamto</li><li>Zrobić jeszcze coś</li></ul></li><li><span>OI</span><ul class="tree"><li>Wygrać</li><li>Przegrać</li></ul></li><li><span>XPlane</span><ul class="tree"><li>Checklista</li></ul></li></ul></div> -->
+          <div id="sidebar_projectTree"><ul class="tree"><li><span id="S_projectName_WayApp" onclick="previewExample('WayApp')">WayApp</span><ul class="tree"><li>Zrobić to</li><li>Zrobić tamto</li><li>Zrobić jeszcze coś</li></ul></li><li><span>OI</span><ul class="tree"><li>Wygrać</li><li>Przegrać</li></ul></li><li><span>XPlane</span><ul class="tree"><li>Checklista</li></ul></li></ul></div>
         </div>
         <div class="col content">
           <div class="navbar navbar-expand-lg d-flex justify-content-end">
@@ -76,7 +76,7 @@
                 <button onclick="document.getElementById('createProject_DIAL').style.display = 'block'" class="btn btn-dark button buttonGreen"><span style="color: #FFFFFFAA">Create project</span></button>
               </div>
               <div class="buttonContainer">
-                <button class="btn btn-dark button buttonBlue"><span style="color: #FFFFFFAA">Edit project</span></button>
+                <button onclick="editEnable()" class="btn btn-dark button buttonBlue"><span style="color: #FFFFFFAA">Edit project</span></button>
               </div>
               <div class="buttonContainer">
                 <button class="btn btn-dark button buttonIndigo"><span style="color: #FFFFFFAA">Delete Project</span></button>
@@ -103,15 +103,15 @@
                 <div id="tab">
                   <h1 id="projectInfo_name">Project name</h1>
                   <h5 style="opacity: 0.5;" id="projectInfo_tags">Project tags</h5>
-                  <!-- <div class="input-group">
-                    <input type="text" class="textInput-lessVisible" id="projectInfo_name" placeholder="Edit the name..."/>
-                    <input style="margin-left: 5px;" type="text" class="textInput-lessVisible" id="projectInfo_tags" placeholder="Edit tags..."/>
-                      <button class="btn btn-dark button buttonBlue"><span style="color: #FFFFFFAA">Submit</span></button>
-                  </div> -->
+                  <div id="input-group" class="input-group">
+                    <input type="text" class="textInput-lessVisible" id="projectInfoEdit_name" placeholder="Edit the name..."/>
+                    <input style="margin-left: 5px;" type="text" class="textInput-lessVisible" id="projectInfoEdit_tags" placeholder="Edit tags (a, b, c)..."/>
+                    <button onclick="editProject(document.getElementById('projectInfo_name').innerHTML, document.getElementById('projectInfoEdit_name').value, document.getElementById('projectInfoEdit_tags').value)" class="btn btn-dark button buttonBlue"><span style="color: #FFFFFFAA">Submit</span></button>
+                  </div>
                 </div>
               </div>
               <div style="padding-top: 10px;" class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-
+                
               </div>
               <div style="padding-top: 10px;" class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
 

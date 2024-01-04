@@ -201,6 +201,10 @@ ul.tree li span {
     border-radius: 15px;
 }
 
+#input-group {
+    opacity: 0;
+}
+
 .textInput-lessVisible {
     font-weight: 500;
     color: #FFF;

@@ -5,6 +5,38 @@ var global_desktop = false;
 // window has to be opened.
 //
 
+async function editProject(name, newName, newTagsToAdd) {
+    console.log(name, newName, newTagsToAdd);
+    try {
+        await eel.editProject(name, newName, newTagsToAdd)();
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
+function editEnable(name) {
+    $("#input-group").css("opacity", 1);
+}
+
+// Example function that previews the example (first) project 
+function previewExample(name) {
+    var project = $("S_projectName_WayApp");
+
+    $("#projectInfo").css("display", "block");
+    document.getElementById("projectInfo_name").innerHTML = name;
+    updateProjectTags(name);
+}
+
+async function updateProjectTags(name) {
+    try {
+        const tags = await eel.getProjectTags(name)();
+        document.getElementById("projectInfo_tags").innerHTML = tags;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// Deprecated, might be deleted
 function joinWindow() {
     if (global_desktop) {
         eel.joinWindow();

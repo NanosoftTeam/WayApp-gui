@@ -22,7 +22,7 @@ class GUI:
     @eel.expose
     def init():
         eel.init('assets')
-        eel.start('index.html', port=2023)
+        eel.start('index.html', port=2023, size = (1280, 720))
     
     @staticmethod
     @eel.expose
@@ -36,6 +36,35 @@ class GUI:
 
 # DATA Class. Class containing connections between the GUI and the... TUI? (I meant the backend)
 class DATA:
+    @staticmethod
+    @eel.expose
+    def getProjects():
+        with open("./assets/projects.json") as data:
+            print(data.read())
+            return data.read()
+
+    @staticmethod
+    @eel.expose
+    def getProjectTags(name: str):
+        results = ""
+        all_projects_list = manager.Project.get(name)
+        # print(all_projects_list[0].tags)
+        for project in all_projects_list:
+            if project.name == name:
+                results = project.tags
+        return results
+    
+    @staticmethod
+    @eel.expose
+    def editProject(name: str, newName: str, newTagsToAdd: str):
+        for project in manager.Project.get(name):
+            if project.name == name:
+                project.name = newName
+                for tag in newTagsToAdd.split(", "):
+                    project.tags.append(tag)
+                project.save()
+
+
     @staticmethod
     @eel.expose
     def parseCreateProjectData(name: str, tags):
@@ -85,13 +114,6 @@ class DATA:
 
 # FILES Class. Class containing functions, which make us able to read lines from files out of the `assets` directory
 class FILES:
-    @staticmethod
-    @eel.expose
-    def getProjects():
-        with open("./assets/projects.json") as data:
-            print(data.read())
-            return data.read()
-        
     @staticmethod
     @eel.expose
     def convertProjectsToOneJson():
